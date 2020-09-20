@@ -1,0 +1,18 @@
+<div class="container">
+<div class="row">
+<div class="col p-auto">
+<h1>User#Login</h1>
+<%= form_with url: login_path, method: :post, local: true do |f| %>
+<div class="form-group">
+  <%= f.label :email, "Email" %>
+  <%= f.email_field :email, class: "form-control", placeholder: "Enter Your Email" %>
+</div>
+<div class="form-group">
+  <%= f.label :password, "Password" %>
+  <%= f.password_field :password, class: "form-control", placeholder: "password" %>
+</div>
+<%= f.submit "Login", class: "btn btn-primary" %>
+<% end %>
+</div>
+</div>
+</div>

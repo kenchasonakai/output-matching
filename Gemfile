@@ -8,6 +8,7 @@ gem 'webpacker'
 gem 'turbolinks'
 gem 'jbuilder'
 gem 'bootsnap',   '1.4.5', require: false
+gem 'sorcery'
 
 group :development, :test do
   gem 'sqlite3', '1.4.2'
@@ -19,6 +20,9 @@ group :development do
   gem 'listen'
   gem 'spring'
   gem 'spring-watcher-listen'
+	gem 'rubocop', require: false
+  gem 'rubocop-performance', require: false
+  gem 'rubocop-rails', require: false
 end
 
 group :test do
