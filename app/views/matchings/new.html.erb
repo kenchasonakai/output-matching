@@ -12,9 +12,11 @@
 </div>
 <div class="row my-3">
 <div class="col text-center">
-<%= form_with model: @matching, local: true do |f| %>
-<%= f.hidden_field :user_id, value: current_user.id %>
-<%= f.hidden_field :offering_post_id, value: @offering_post.id %>
+<%= form_with url: matchings_path, method: :post, scope: :matching, local: true do |f| %>
+<%= f.hidden_field :follower_id, value: current_user.id %>
+<%= f.hidden_field :followed_id, value: @offering_post.user_id %>
+<%= f.hidden_field :followed_post_id, value: @offering_post.id %>
+<%= f.select :follower_post_id, @my_posts, { include_blank: '選択してください'}, { class: 'form-control w-50 mx-auto' } %>
 <%= f.submit "マッチング", class: "btn btn-primary" %>
 <% end %>
 </div>

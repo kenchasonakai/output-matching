@@ -9,6 +9,7 @@ class OfferingPostsController < ApplicationController
 	def create
 		@offering_post = current_user.offering_posts.new(post_params)
 		if @offering_post.save
+			flash[:success] = "原稿を作成しました"
 			redirect_to user_path(current_user)
 		else
 			render 'new'

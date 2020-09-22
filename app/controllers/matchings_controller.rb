@@ -1,12 +1,16 @@
 class MatchingsController < ApplicationController
 	def new
-		@matching = Matching.new
+		@matching = Relationship.new
 		@offering_post = OfferingPost.find(params[:offering_post_id])
+		posts = current_user.offering_posts
+		@my_posts = {"聞くだけ": "" }
+		posts.each do |post|
+			@my_posts.merge!(post.title => post.id)
+		end
 	end
 	def create
-		@matching = Matching.new(matching_params)
+		@matching = Relationship.new(matching_params)
 		if @matching.save
-			@matching.offering_post.status = "matching"
 			flash[:success] = "マッチングしました"
 			redirect_to user_path(current_user)
 		else
@@ -14,16 +18,20 @@ class MatchingsController < ApplicationController
 		end
 	end
 	def show
-		@matching = Matching.find(params[:id])
+		@matching = Relationship.find(params[:id])
+	end
+	def update
+		@matching = Relationship.find(params[:id])
+		@matching.update(status: params[:status])
 	end
 	def destroy
-		@matching = Matching.find(params[:id])
+		@matching = Relationship.find(params[:id])
 		@matching.destroy!
 		redirect_to user_path(current_user)
 	end
 
 	private
 	def matching_params
-		params.require(:matching).permit(:user_id, :offering_post_id)
+		params.require(:matching).permit(:followed_id, :follower_id, :followed_post_id, :follower_post_id)
 	end
 end

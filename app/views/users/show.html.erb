@@ -4,9 +4,31 @@
 <%= @user.name %>
 </div>
 </div>
+<% unless @matchings.blank? %>
+<div class="row mt-3">
+<div class="col">
+<h4>マッチング一覧</h4>
+</div>
+</div>
 <div class="row">
 <div class="col">
-<%= @matching %>
+<table class="table">
+  <thead>
+    <tr>
+			<th scope="col">名前</th>
+			<th scope="col">テーマ</th>
+    </tr>
+  </thead>
+  <tbody>
+	<%= render 'user_matching', matchings: @matchings %>
+  </tbody>
+</table>
+<% end %>
+</div>
+</div>
+<div class="row mt-3">
+<div class="col">
+<h4>原稿一覧</h4>
 </div>
 </div>
 <div class="row">

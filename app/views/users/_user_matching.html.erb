@@ -1,0 +1,20 @@
+<% matchings.each do |matching| %>
+<% follower_post = OfferingPost.find_by(id: matching.follower_post_id) %>
+<% followed_post = OfferingPost.find_by(id: matching.followed_post_id) %>
+<tr>
+  <td><%= matching.follower.name %></td>
+	<% if follower_post %>
+		<td><%= follower_post.title %></td>
+	<% else %>
+		<td>聞くだけ</td>
+	<% end %>
+</tr>
+<tr>
+	<td><%= matching.followed.name %></td>
+	<% if followed_post %>
+		<td><%= followed_post.title %></td>
+	<% else %>
+		<td>聞くだけ</td>
+	<% end %>
+</tr>
+<% end %>

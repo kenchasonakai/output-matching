@@ -20,8 +20,9 @@ skip_before_action :require_login, only: %i[new create]
 	def show
 		@user = User.find(params[:id])
 		@user_articles = @user.offering_posts
-		@user_matchings = Matching.where(user_id: current_user.id)
+		@matchings = Relationship.where(followed_id: @user.id).or(Relationship.where(follower_id: @user.id))
 	end
+
 
 	private
 
