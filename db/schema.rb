@@ -10,7 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_18_123345) do
+ActiveRecord::Schema.define(version: 2020_09_22_002701) do
+
+  create_table "matchings", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "offering_post_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["offering_post_id"], name: "index_matchings_on_offering_post_id"
+    t.index ["user_id"], name: "index_matchings_on_user_id"
+  end
+
+  create_table "offering_posts", force: :cascade do |t|
+    t.string "title", null: false
+    t.text "body"
+    t.integer "user_id"
+    t.integer "status", default: 0
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_offering_posts_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "name", null: false
@@ -22,4 +41,7 @@ ActiveRecord::Schema.define(version: 2020_09_18_123345) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "matchings", "offering_posts"
+  add_foreign_key "matchings", "users"
+  add_foreign_key "offering_posts", "users"
 end

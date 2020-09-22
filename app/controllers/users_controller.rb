@@ -8,8 +8,19 @@ skip_before_action :require_login, only: %i[new create]
 	end
 
 	def create
-		@user = User.create(user_params)
-		redirect_to login_path
+		@user = User.new(user_params)
+		if @user.save
+			auto_login(@user)
+			redirect_to root_path
+		else
+			render 'new'
+		end
+	end
+
+	def show
+		@user = User.find(params[:id])
+		@user_articles = @user.offering_posts
+		@user_matchings = Matching.where(user_id: current_user.id)
 	end
 
 	private

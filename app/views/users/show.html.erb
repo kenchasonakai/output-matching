@@ -1,0 +1,31 @@
+<div class="container">
+<div class="row">
+<div class="col m-5">
+<%= @user.name %>
+</div>
+</div>
+<div class="row">
+<div class="col">
+<%= @matching %>
+</div>
+</div>
+<div class="row">
+<div class="col">
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">title</th>
+			<th scope="col">created_at</th>
+			<th scope="col">status</th>
+			<th scope="col"></th>
+			<th scope="col"></th>
+			<th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+	<%= render partial: 'user_article', collection: @user_articles %>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
