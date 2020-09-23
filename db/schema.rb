@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_23_120941) do
+ActiveRecord::Schema.define(version: 2020_09_23_225446) do
 
   create_table "articles", force: :cascade do |t|
     t.string "title", null: false
@@ -19,6 +19,18 @@ ActiveRecord::Schema.define(version: 2020_09_23_120941) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_articles_on_user_id"
+  end
+
+  create_table "matching_posts", force: :cascade do |t|
+    t.string "title", null: false
+    t.string "body"
+    t.integer "user_id"
+    t.integer "article_id"
+    t.integer "status", default: 0
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["article_id"], name: "index_matching_posts_on_article_id"
+    t.index ["user_id"], name: "index_matching_posts_on_user_id"
   end
 
   create_table "relationships", force: :cascade do |t|
@@ -33,6 +45,16 @@ ActiveRecord::Schema.define(version: 2020_09_23_120941) do
     t.index ["followed_post_id"], name: "index_relationships_on_followed_post_id"
     t.index ["follower_id"], name: "index_relationships_on_follower_id"
     t.index ["follower_post_id"], name: "index_relationships_on_follower_post_id"
+  end
+
+  create_table "time_frames", force: :cascade do |t|
+    t.datetime "time_frame"
+    t.integer "user_id"
+    t.integer "matching_post_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["matching_post_id"], name: "index_time_frames_on_matching_post_id"
+    t.index ["user_id"], name: "index_time_frames_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

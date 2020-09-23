@@ -1,0 +1,22 @@
+<div class="container">
+<div class="row">
+<div class="col">
+<h1>Create MatchingPost</h1>
+<%= form_with model: @matching_post, local: true do |f| %>
+<div class="form-group">
+  <%= f.label :title, "テーマ" %>
+  <%= f.text_field :title, class: "form-control", placeholder: "テーマを入力してください" %>
+</div>
+<div class="form-group">
+<%= f.label :article_id, "参考資料" %>
+<%= f.select :article_id, @my_posts, { include_blank: '選択してください'}, { class: 'form-control mx-auto' } %>
+</div>
+<div class="form-group">
+  <%= f.label :body, "希望時間等" %>
+  <%= f.text_area :body, class: "form-control", placeholder: "希望時間やその他伝えたいことを入力してください", wrap: "soft", rows: "5" %>
+</div>
+<%= f.submit "投稿", class: "btn btn-primary" %>
+<% end %>
+</div>
+</div>
+</div>
