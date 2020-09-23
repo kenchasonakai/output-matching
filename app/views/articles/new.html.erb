@@ -2,7 +2,7 @@
 <div class="row">
 <div class="col">
 <h1>Create Post</h1>
-<%= form_with model: @offering_post, local: true do |f| %>
+<%= form_with model: @article, local: true do |f| %>
 <div class="form-group">
   <%= f.label :title, "Title" %>
   <%= f.text_field :title, class: "form-control", placeholder: "title" %>

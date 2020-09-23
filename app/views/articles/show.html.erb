@@ -2,16 +2,13 @@
 	<div class="row mx-5">
 	<div class="col text-center">
 		<h2>
-		<%= @offering_post.title %>
-		<% if @offering_post.status == "active" && @offering_post.user_id != current_user.id %>
-		<%= link_to "マッチングする？", new_matching_path, id: @offering_post.id , class: "btn btn-primary float-right" %>
-		<% end %>
+		<%= @article.title %>
 		</h2>
 	</div>
 	</div>
 	<div class="row mx-5 my-5">
 	<div class="col center-block text-wrap text-justify">
-	<%= @offering_post.body %>
+	<%= @article.body %>
 	</div>
 	</div>
 	<div class="row mx-5">
@@ -26,3 +23,4 @@
 	margin:0 20% 0 20%;
 	}
 </style>
+

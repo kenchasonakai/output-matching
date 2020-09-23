@@ -4,50 +4,34 @@
 <%= @user.name %>
 </div>
 </div>
-<% unless @matchings.blank? %>
-<div class="row mt-3">
-<div class="col">
-<h4>マッチング一覧</h4>
+<div class="card mb-3 overflow-hidden" style="max-width: 540px; max-height: 250px;">
+  <div class="row no-gutters">
+    <div class="col-md-4">
+      <svg class="bd-placeholder-img" width="100%" height="250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image"><title>Placeholder</title><rect fill="#868e96" width="100%" height="100%"/><text fill="#dee2e6" dy=".3em" x="50%" y="50%">Image</text></svg>
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">User articles</h5>
+        <p class="card-text overflow-hidden">
+				<%= render partial: 'user_article', collection: @user_articles %></p>
+        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+      </div>
+    </div>
+  </div>
 </div>
-</div>
-<div class="row">
-<div class="col">
-<table class="table">
-  <thead>
-    <tr>
-			<th scope="col">名前</th>
-			<th scope="col">テーマ</th>
-    </tr>
-  </thead>
-  <tbody>
-	<%= render 'user_matching', matchings: @matchings %>
-  </tbody>
-</table>
-<% end %>
-</div>
-</div>
-<div class="row mt-3">
-<div class="col">
-<h4>原稿一覧</h4>
-</div>
-</div>
-<div class="row">
-<div class="col">
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">title</th>
-			<th scope="col">created_at</th>
-			<th scope="col">status</th>
-			<th scope="col"></th>
-			<th scope="col"></th>
-			<th scope="col"></th>
-    </tr>
-  </thead>
-  <tbody>
-	<%= render partial: 'user_article', collection: @user_articles %>
-  </tbody>
-</table>
-</div>
-</div>
+<div class="card mb-3" style="max-width: 540px;">
+  <div class="row no-gutters">
+    <div class="col-md-4">
+      <svg class="bd-placeholder-img" width="100%" height="250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image"><title>Placeholder</title><rect fill="#868e96" width="100%" height="100%"/><text fill="#dee2e6" dy=".3em" x="50%" y="50%">Image</text></svg>
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">User Matchings</h5>
+        <p class="card-text overflow-hidden">
+				<%= render 'user_matching', matchings: @matchings %>
+				</p>
+        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+      </div>
+    </div>
+  </div>
 </div>

@@ -1,20 +1,26 @@
 <% matchings.each do |matching| %>
-<% follower_post = OfferingPost.find_by(id: matching.follower_post_id) %>
-<% followed_post = OfferingPost.find_by(id: matching.followed_post_id) %>
-<tr>
-  <td><%= matching.follower.name %></td>
+<% follower_post = Article.find_by(id: matching.follower_post_id) %>
+<% followed_post = Article.find_by(id: matching.followed_post_id) %>
+	<div class="border m-1">
+  <div class="row">
+  <div class="col">
+  <%= matching.follower.name %>
 	<% if follower_post %>
-		<td><%= follower_post.title %></td>
+		<%= "テーマ： #{follower_post.title}" %>
 	<% else %>
-		<td>聞くだけ</td>
+		聞くだけ
 	<% end %>
-</tr>
-<tr>
-	<td><%= matching.followed.name %></td>
+	</div>
+	</div>
+	<div class="row">
+	<div class="col">
+	<%= matching.followed.name %>
 	<% if followed_post %>
-		<td><%= followed_post.title %></td>
+		<%= "テーマ： #{followed_post.title}" %>
 	<% else %>
-		<td>聞くだけ</td>
+		聞くだけ
 	<% end %>
-</tr>
+	</div>
+	</div>
+	</div>
 <% end %>

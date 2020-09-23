@@ -10,25 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_22_095617) do
+ActiveRecord::Schema.define(version: 2020_09_23_120941) do
 
-  create_table "matchings", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "offering_post_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["offering_post_id"], name: "index_matchings_on_offering_post_id"
-    t.index ["user_id"], name: "index_matchings_on_user_id"
-  end
-
-  create_table "offering_posts", force: :cascade do |t|
+  create_table "articles", force: :cascade do |t|
     t.string "title", null: false
-    t.text "body"
+    t.string "body"
     t.integer "user_id"
-    t.integer "status", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_offering_posts_on_user_id"
+    t.index ["user_id"], name: "index_articles_on_user_id"
   end
 
   create_table "relationships", force: :cascade do |t|
@@ -55,7 +45,5 @@ ActiveRecord::Schema.define(version: 2020_09_22_095617) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
-  add_foreign_key "matchings", "offering_posts"
-  add_foreign_key "matchings", "users"
-  add_foreign_key "offering_posts", "users"
+  add_foreign_key "articles", "users"
 end

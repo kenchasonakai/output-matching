@@ -1,10 +1,11 @@
 class UsersController < ApplicationController
-skip_before_action :require_login, only: %i[new create]
+skip_before_action :require_login, only: [:new, :create]
 	def index
 		@users = User.all
 	end
+
 	def new
-		@user = User.new()
+		@user = User.new
 	end
 
 	def create
@@ -19,10 +20,9 @@ skip_before_action :require_login, only: %i[new create]
 
 	def show
 		@user = User.find(params[:id])
-		@user_articles = @user.offering_posts
+		@user_articles = @user.articles
 		@matchings = Relationship.where(followed_id: @user.id).or(Relationship.where(follower_id: @user.id))
 	end
-
 
 	private
 
