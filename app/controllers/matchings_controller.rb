@@ -2,7 +2,7 @@ class MatchingsController < ApplicationController
   def new
     @matching = Relationship.new
     @article = Article.find(params[:article_id])
-    posts = current_user.offering_posts
+    posts = current_user.articles
     @my_posts = { "聞くだけ": '' }
     posts.each do |post|
       @my_posts.merge!(post.title => post.id)

@@ -2,21 +2,70 @@
 <div class="row">
 <div class="col">
 <h1>Create MatchingPost</h1>
+</div>
+</div>
 <%= form_with model: @matching_post, local: true do |f| %>
+<div class="row">
+<div class="col">
 <div class="form-group">
   <%= f.label :title, "テーマ" %>
   <%= f.text_field :title, class: "form-control", placeholder: "テーマを入力してください" %>
 </div>
+</div>
+</div>
+<div class="row">
+<div class="col">
 <div class="form-group">
 <%= f.label :article_id, "参考資料" %>
 <%= f.select :article_id, @my_posts, { include_blank: '選択してください'}, { class: 'form-control mx-auto' } %>
 </div>
+</div>
+</div>
+<div>
+<div class="float-left mr-2">
+<%= date_field_tag :date, Date.today, use_month_numbers: true %>
+</div>
+<div>
+<button type="button" id="js-datetime_button" onclick=add_datetime()>追加</button>
+</div>
+</div>
+<div class="row">
+<div class="col">
+<div id="js-add_datetime"></div>
+</div>
+</div>
+<div class="row">
+<div class="col">
 <div class="form-group">
   <%= f.label :body, "希望時間等" %>
   <%= f.text_area :body, class: "form-control", placeholder: "希望時間やその他伝えたいことを入力してください", wrap: "soft", rows: "5" %>
+</div>
+</div>
 </div>
 <%= f.submit "投稿", class: "btn btn-primary" %>
 <% end %>
 </div>
 </div>
 </div>
+<script>
+function add_datetime(){
+	var datetime = document.createTextNode(document.getElementById("date").value);
+	var div = document.createElement("div");
+	div.classList.add('m-1', 'float-left', 'add-time')
+	div.appendChild(datetime);
+	document.getElementById("js-add_datetime").append(div);
+	console.log(div)
+	}
+</script>
+<style>
+.add-time {
+    display: inline-block;
+    text-decoration: none;
+    padding: 0.5rem;
+    background: #f7f7f7;
+    border-left: solid 6px #58ad5a;
+    color: #58ad5a;
+    font-weight: bold;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.22);
+}
+</style>

@@ -17,7 +17,7 @@ class ArticlesController < ApplicationController
   end
 
   def show
-    @article = Articles.find(params[:id])
+    @article = Article.find(params[:id])
   end
 
   def edit

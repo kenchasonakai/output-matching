@@ -20,7 +20,7 @@ class MatchingPostsController < ApplicationController
 		end
 	end
 	def show
-		@matching_post = MatchinPost.find(params[:id])
+		@matching_post = MatchingPost.find(params[:id])
 	end
 	def edit
 		@matching_post = MatchingPost.find(params[:id])
