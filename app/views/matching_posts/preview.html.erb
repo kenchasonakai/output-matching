@@ -1,0 +1,32 @@
+ <section class="jumbotron">
+    <div class="container w-50">
+			<div class="row justify-content-start">
+			<div class="col">
+			<h2>マッチング希望プレビュー</h2>
+      <p class="lead text-muted">これで投稿しますか？OKならマッチング募集ボタンを押してください。</p>
+    </div>
+		</div>
+		</div>
+  </section>
+
+<div class="container">
+<h2 class="text-center">Matching Post</h2>
+<div class="card w-50 mx-auto">
+  <div class="card-header text-center">
+   <h4> <%= @title %></h4>
+  </div>
+  <div class="card-body">
+    <blockquote class="blockquote mb-0">
+			<p><%= @article_title %></p>
+      <p><%= @body %></p>
+    </blockquote>
+  </div>
+	<%= form_with url: matching_posts_path,scope: :matching_post, method: :post, local: true do |f| %>
+	<%= f.hidden_field :title, value: @title %>
+	<%= f.hidden_field :body, value: @body %>
+	<%= f.hidden_field :article_id, value: @article_id %>
+	<%= f.submit "マッチング募集"%>
+	<% end %>
+	<button type="button" onclick="history.back()" class="btn btn-secondary">戻る</button>
+</div>
+</div>

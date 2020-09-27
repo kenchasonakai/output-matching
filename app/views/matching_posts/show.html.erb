@@ -1,11 +1,21 @@
+<section class="jumbotron">
+    <div class="container w-50">
+			<div class="row justify-content-start">
+			<div class="col">
+			<h2>マッチング希望詳細</h2>
+      <p class="lead text-muted">マッチング詳細を確認して都合が良い日程を送りましょう。承認されたらマッチングします。</p>
+    </div>
+		</div>
+		</div>
+  </section>
+
 <div class="container">
-<h2 class="text-center">Matching Post</h2>
 <div class="card w-50 mx-auto">
   <div class="card-header">
    <h4> <%= @matching_post.title %></h4>
   </div>
   <div class="card-body">
-    <blockquote class="blockquote mb-0">
+    <blockquote class="blockquote mb-0 overflow-wrap: break-word;">
       <p><%= @matching_post.body %></p>
     </blockquote>
   </div>

@@ -1,6 +1,12 @@
 class MatchingPostsController < ApplicationController
 	def index
 		@matching_posts = MatchingPost.all
+		posts = current_user.articles.all
+		@my_posts = {}
+    posts.each do |post|
+      @my_posts.merge!(post.title => post.id)
+    end
+
 	end
 	def new
 		@matching_post = MatchingPost.new
@@ -9,7 +15,11 @@ class MatchingPostsController < ApplicationController
     posts.each do |post|
       @my_posts.merge!(post.title => post.id)
     end
-
+	end
+	def preview
+		@title = params[:title]
+		@body = params[:body]
+		@article_id = params[:article_id]
 	end
 	def create
 		@matching_post = current_user.matching_posts.build(matching_post_params)
@@ -26,7 +36,6 @@ class MatchingPostsController < ApplicationController
 		@matching_post = MatchingPost.find(params[:id])
 	end
 	def update
-	
 	end
 	def destroy
 		@matching_post = MatchingPost.find(params[:id])

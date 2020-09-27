@@ -1,14 +1,24 @@
-<div class="container">
+<section class="jumbotron">
+    <div class="container w-50">
+			<div class="row justify-content-start">
+			<div class="col">
+			<h2>原稿執筆</h2>
+      <p class="lead text-muted">マッチングした時に使う原稿を書きましょう。他のブログなどで書いた記事などを載せてみてもいいかもしれません。</p>
+    </div>
+		</div>
+		</div>
+  </section>
+
+<div class="container w-50">
 <div class="row">
 <div class="col">
-<h1>Create Post</h1>
 <%= form_with model: @article, local: true do |f| %>
 <div class="form-group">
-  <%= f.label :title, "Title" %>
+  <%= f.label :title, "テーマ" %>
   <%= f.text_field :title, class: "form-control", placeholder: "title" %>
 </div>
 <div class="form-group">
-  <%= f.label :body, "Body" %>
+  <%= f.label :body, "本文" %>
   <%= f.text_area :body, class: "form-control", placeholder: "Body", wrap: "soft", rows: "10" %>
 </div>
 <%= f.submit "投稿", class: "btn btn-primary" %>

@@ -1,10 +1,10 @@
-<div class="container">
+<div class="container w-50">
 <div class="row">
 <div class="col">
 <h1>Create MatchingPost</h1>
 </div>
 </div>
-<%= form_with model: @matching_post, local: true do |f| %>
+<%= form_with url: preview_matching_posts_path, method: :post, local: true do |f| %>
 <div class="row">
 <div class="col">
 <div class="form-group">
@@ -16,25 +16,34 @@
 <div class="row">
 <div class="col">
 <div class="form-group">
-<%= f.label :article_id, "参考資料" %>
+<%= f.label :article_id, "参考資料(後からでも追加できます)" %>
 <%= f.select :article_id, @my_posts, { include_blank: '選択してください'}, { class: 'form-control mx-auto' } %>
 </div>
 </div>
 </div>
+
+<!--
 <div>
-<div class="float-left mr-2">
-<%= date_field_tag :date, Date.today, use_month_numbers: true %>
+<%= f.label :date, "開始希望時間" %>
 </div>
 <div>
-<button type="button" id="js-datetime_button" onclick=add_datetime()>追加</button>
+<div class="float-left mr-2">
+<%= datetime_local_field :date, Date.today, use_month_numbers: true, class: "start-datetime" %>
+</div>
+<div>
+<button type="button" id="js-datetime_button">追加</button>
 </div>
 </div>
 <div class="row">
 <div class="col">
-<div id="js-add_datetime"></div>
+<div id="js-add_datetime">
+
 </div>
 </div>
-<div class="row">
+</div>
+-->
+
+<div class="row mt-2">
 <div class="col">
 <div class="form-group">
   <%= f.label :body, "希望時間等" %>
@@ -42,21 +51,11 @@
 </div>
 </div>
 </div>
-<%= f.submit "投稿", class: "btn btn-primary" %>
+<%= f.submit "プレビュー", class: "btn btn-primary" %>
 <% end %>
 </div>
 </div>
 </div>
-<script>
-function add_datetime(){
-	var datetime = document.createTextNode(document.getElementById("date").value);
-	var div = document.createElement("div");
-	div.classList.add('m-1', 'float-left', 'add-time')
-	div.appendChild(datetime);
-	document.getElementById("js-add_datetime").append(div);
-	console.log(div)
-	}
-</script>
 <style>
 .add-time {
     display: inline-block;
@@ -67,5 +66,15 @@ function add_datetime(){
     color: #58ad5a;
     font-weight: bold;
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.22);
+}
+.datetime_delete{
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: #0033cc;
+}
+.datetime_delete:hover{
+  text-decoration: underline;
+  color: #002080;
 }
 </style>

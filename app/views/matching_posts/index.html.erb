@@ -1,14 +1,27 @@
-<div class="container">
-Matchings
+<section class="jumbotron">
+    <div class="container w-50">
+			<div class="row justify-content-start">
+			<div class="col">
+			<h2>マッチング希望一覧</h2>
+      <p class="lead text-muted">ここからマッチングしたい投稿を選んでください</p>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal1" data-backdrop="true">
+ マッチング希望を作成
+</button>
+    </div>
+		</div>
+		</div>
+  </section>
+
+
+<div class="container w-50">
 <div class="row">
 <div class="col">
 <table class="table">
   <thead>
     <tr>
-      <th scope="col">#</th>
-      <th scope="col">User Name</th>
-      <th scope="col">Title</th>
-			<th scope="col"></th>
+      <th scope="col">テーマ</th>
+      <th scope="col">ユーザー名</th>
+      <th scope="col">作成日</th>
     </tr>
   </thead>
   <tbody>
@@ -18,26 +31,74 @@ Matchings
 </div>
 </div>
 </div>
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal1">
-  Launch demo modal
-</button>
+
+</div>
 <div class="modal fade modal-dialog modal-dialog-centered" id="modal1" tabindex="-1"
       role="dialog" aria-labelledby="label1" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="label1">Matching Post Form</h5>
+        <h5 class="modal-title" id="label1">マッチング希望作成フォーム</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        Modal body
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">OK</button>
+<div class="container w-60">
+<%= form_with url: preview_matching_posts_path, method: :post, local: true do |f| %>
+<div class="row">
+<div class="col">
+<div class="form-group">
+  <%= f.label :title, "テーマ" %>
+  <%= f.text_field :title, class: "form-control", placeholder: "テーマを入力してください" %>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col">
+<div class="form-group">
+<%= f.label :article_id, "参考資料(後からでも追加できます)" %>
+<%= f.select :article_id, @my_posts, { include_blank: '選択してください'}, { class: 'form-control mx-auto' } %>
+</div>
+</div>
+</div>
+
+<!--
+<div>
+<%= f.label :date, "開始希望時間" %>
+</div>
+<div>
+<div class="float-left mr-2">
+<%= datetime_local_field :date, Date.today, use_month_numbers: true, class: "start-datetime" %>
+</div>
+<div>
+<button type="button" id="js-datetime_button">追加</button>
+</div>
+</div>
+<div class="row">
+<div class="col">
+<div id="js-add_datetime">
+
+</div>
+</div>
+</div>
+-->
+
+<div class="row mt-2">
+<div class="col">
+<div class="form-group">
+  <%= f.label :body, "希望時間等" %>
+  <%= f.text_area :body, class: "form-control", placeholder: "希望時間やその他伝えたいことを入力してください", wrap: "soft", rows: "5" %>
+</div>
+</div>
+</div>
+<%= f.submit "プレビュー", class: "btn btn-primary mb-5" %>
+<% end %>
+</div>
+</div>
+</div>
       </div>
     </div>
   </div>
-</div>
+
+
