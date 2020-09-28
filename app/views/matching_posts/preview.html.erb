@@ -10,7 +10,6 @@
   </section>
 
 <div class="container">
-<h2 class="text-center">Matching Post</h2>
 <div class="card w-50 mx-auto">
   <div class="card-header text-center">
    <h4> <%= @title %></h4>
@@ -21,12 +20,16 @@
       <p><%= @body %></p>
     </blockquote>
   </div>
+	</div>
+	<div class="row w-50 mx-auto mt-4">
+	<div class="col">
 	<%= form_with url: matching_posts_path,scope: :matching_post, method: :post, local: true do |f| %>
 	<%= f.hidden_field :title, value: @title %>
 	<%= f.hidden_field :body, value: @body %>
 	<%= f.hidden_field :article_id, value: @article_id %>
-	<%= f.submit "マッチング募集"%>
-	<% end %>
+	<%= f.submit "マッチング募集", class: "btn btn-primary"%>
 	<button type="button" onclick="history.back()" class="btn btn-secondary">戻る</button>
-</div>
+	<% end %>
+	</div>
+	</div>
 </div>

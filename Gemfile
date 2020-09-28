@@ -9,8 +9,7 @@ gem 'turbolinks'
 gem 'jbuilder'
 gem 'bootsnap',   '1.4.5', require: false
 gem 'sorcery'
-gem 'bootstrap4-datetime-picker-rails'
-gem 'momentjs-rails'
+gem 'rails-i18n', '~> 5.1'
 
 group :development, :test do
   gem 'sqlite3', '1.4.2'

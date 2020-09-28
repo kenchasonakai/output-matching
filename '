@@ -31,18 +31,22 @@
 		</div>
 		</div>
 <div class="container w-50 mt-2 d-none" id="js-time_frame_form">
-<div class="row justify-content-start mt-2">
-<div class="col">
-<p>希望開始時間</p>
-</div>
-</div>
+<div class="row justify-content-start">
+	<div class="col">
+	<p>開始希望時間</p>
+	</div>
+	</div>
 <div class="row justify-content-start">
 <div class="col">
 <div class="float-left mr-2">
-<%= date_field %>
+<%= form_with url: time_frames_path, method: :post do |f| %>
+<%= f.label :start_time %>
+<%= f.datetime_field :start_time, class: "form-control datetimepicker-input", id: "start_time", data: {toggle: "datetimepicker", target: "#start_time"} %>
+<%= f.submit "実行", class: "btn w-100" %>
+<% end %>
 </div>
 <div>
-<button type="button" id="js-create_time_frame" class="btn btn-secondary">時間帯を登録</button>
+<button id="js-create_time_frame" class="btn btn-secondary">時間帯を登録 </button>
 </div>
 </div>
 </div>
@@ -73,7 +77,6 @@
 
 <script>
 var time_frame_button = document.getElementById("js-new_time_frame");
-var create_time_frame_button = document.getElementById("js-create_time_frame")
 	time_frame_button.onclick = function(){
 	var time_frame_form = document.getElementById("js-time_frame_form");
 	var is_visible = document.defaultView.getComputedStyle(time_frame_form, null).display;
@@ -84,9 +87,9 @@ var create_time_frame_button = document.getElementById("js-create_time_frame")
 		time_frame_form.classList.add("d-none");
 		}
 	}
-
+var create_time_frame_button = document.getElementById("js-create_time_frame")
 	create_time_frame_button.onclick = function(){
-	var datetime = document.getElementById("date-time")
-	console.log(datetime.value);
+		var time_frame = document.getElementById("start-datetime").value;
+		console.log(time_frame)
 		}
 </script>

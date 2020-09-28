@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   authenticates_with_sorcery!
 	has_many :articles, dependent: :destroy
+	has_many :time_frames, dependent: :destroy
 	has_many :matching_posts, dependent: :destroy
 	has_many :active_relationships, class_name: 'Relationship', foreign_key: 'follower_id', dependent: :destroy
 	has_many :passive_relationships, class_name: 'Relationship', foreign_key: 'followed_id', dependent: :destroy

@@ -18,6 +18,7 @@
 		<%= render 'shared/before_login_header' %>
 		<% end %>
 		</header>
+		<div id="js-error_explanation"></div>
 			<% flash.each do |message_type, message| %>
  			 <div class="alert alert-<%= message_type %>"><%= message %></div>
 			<% end %>
