@@ -35,6 +35,7 @@ class MatchingPostsController < ApplicationController
   def show
     @matching_post = MatchingPost.find(params[:id])
 		@time_frame = current_user.time_frames.new
+		@time_frames = @matching_post.time_frames.includes(:user)
   end
 
   def edit

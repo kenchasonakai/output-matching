@@ -1,5 +1,15 @@
 $(function(){
-	alert("succ3ess");
-$("#js-add_datetime").prepend("aaa");
-$('#js-error_explanation').html("");
+	var time_frame = document.createTextNode("<%= @time_frame.time_frame.strftime("%m月 %d日 %H時 %M分")%>");
+	var div = document.createElement("div");
+	var span = document.createElement("span");
+	div.classList.add('m-1', 'float-left', 'add-time');
+	div.setAttribute('id', <%= @time_frame.id %>);
+	var delete_icon = document.createTextNode("×");
+	span.appendChild(delete_icon);
+	span.classList.add("datetime_delete");
+	span.setAttribute('id', 'datetime_delete' + <%= @time_frame.id %> );
+	div.appendChild(time_frame);
+	div.insertBefore(span, div.firstChild);
+	$("#js-add_datetime").append(div);
+
 })
