@@ -1,3 +1,6 @@
 <% time_frames.each do |time_frame| %>
-<%= time_frame.user.name %>
+<tr>
+<td><%= l time_frame.time_frame, format: :short %></td>
+<td><%= link_to "削除", time_frame_path(time_frame), class: "btn btn-danger", method: :delete %></td>
+</tr>
 <% end %>

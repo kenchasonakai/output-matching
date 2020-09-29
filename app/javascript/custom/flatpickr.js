@@ -9,6 +9,7 @@ document.addEventListener("turbolinks:load", () => {
 		dateFormat: "Y-m-d H:i",
 		minDate: "today",
 		maxDate: new Date().fp_incr(8),
+		position: "below center",
 		enableTime: true
   });
 });

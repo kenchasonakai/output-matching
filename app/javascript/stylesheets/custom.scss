@@ -1,0 +1,20 @@
+.add-time {
+  display: inline-block;
+  text-decoration: none;
+  padding: 0.5rem;
+  background: #f7f7f7;
+  border-left: solid 6px #58ad5a;
+  color: #58ad5a;
+  font-weight: bold;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.22);
+}
+.datetime_delete{
+cursor: pointer;
+border: none;
+background: none;
+color: #0033cc;
+}
+.datetime_delete:hover{
+text-decoration: underline;
+color: #002080;
+}

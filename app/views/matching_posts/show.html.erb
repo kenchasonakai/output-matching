@@ -23,6 +23,23 @@
 			</div>
 			<div class="row justify-content-start">
 			<div class="col">
+			
+			<table class="table">
+  		<thead>
+ 		  <tr>
+      <th scope="col"><h4 class="mt-1"><%= current_user.name%>さん</h4></th>
+			<th scope="col"><button class="btn btn-secondary" id="js-show_time_frame">希望開始時間</button></th>
+			</tr>
+		  </thead>
+			
+		  <tbody id="js-user_time_frame" class="d-none">
+			<%= render 'user_time_frame', time_frames: @time_frames %>
+		  </tbody>
+			</table>
+			</div>
+			</div>
+			<div class="row justify-content-start">
+			<div class="col">
 			<button class="btn btn-success" id="js-new_time_frame">マッチング希望時間を送る</button>
 			</div>
 			</div>
@@ -34,7 +51,7 @@
 <div class="container w-50 mt-2 d-none" id="js-time_frame_form">
 <div class="row justify-content-start mt-2">
 <div class="col">
-<p>希望開始時間</p>
+<p class="my-auto">希望開始時間を選択してください</p>
 <div id="js-error_explanation"></div>
 </div>
 </div>
@@ -51,16 +68,10 @@
 <% end %>
 </div>
 </div>
-<div class="row">
-<div class="col">
-<div id="js-add_datetime">
-</div>
-</div>
-</div>
 </div>
 </section>
 
-<div class="container">
+<div class="container mb-5">
 <div class="card w-50 mx-auto">
   <div class="card-header">
    <h4 class="mt-2">テーマ:　<%= @matching_post.title %></h4>
@@ -77,48 +88,14 @@
   <% end %>
 </div>
 </div>
-<div class="container w-50 mt-3">
-<div class="row">
-<div class="col">
-<%= render 'user_time_frame', time_frames: @time_frames %>
-</div>
-</div>
-</div>
-
-<script>
-var time_frame_button = document.getElementById("js-new_time_frame");
-var create_time_frame_button = document.getElementById("js-create_time_frame")
-	if(time_frame_button){time_frame_button.onclick = function(){
-	var time_frame_form = document.getElementById("js-time_frame_form");
-	var is_visible = document.defaultView.getComputedStyle(time_frame_form, null).display;
-	if(is_visible == "none"){
-		time_frame_form.classList.remove("d-none");
-		}
-	else if(is_visible == "block"){
-		time_frame_form.classList.add("d-none");
-		}
-	}
-	}
-</script>
 <style>
-.add-time {
-    display: inline-block;
-    text-decoration: none;
-    padding: 0.5rem;
-    background: #f7f7f7;
-    border-left: solid 6px #58ad5a;
-    color: #58ad5a;
-    font-weight: bold;
-    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.22);
+html {
+    height: 130%;
 }
-.datetime_delete{
-  cursor: pointer;
-  border: none;
-  background: none;
-  color: #0033cc;
+
+body {
+    height: 130%;
+    margin: 0;
 }
-.datetime_delete:hover{
-  text-decoration: underline;
-  color: #002080;
-}
+
 </style>

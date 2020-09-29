@@ -38,7 +38,6 @@ ActiveRecord::Schema.define(version: 2020_09_23_225446) do
     t.integer "followed_id"
     t.integer "follower_post_id"
     t.integer "followed_post_id"
-    t.integer "status", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["followed_id"], name: "index_relationships_on_followed_id"

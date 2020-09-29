@@ -31,8 +31,9 @@
 <script>
 $(".js-to_10strings").each(function(){
     var txt = $(this).text();
-    if(txt.length > 10){
-        txt = txt.substr(0, 10);
+    console.log(txt)
+    if(txt.length > 8){
+        txt = txt.substr(0, 8);
         $(this).text(txt + "･･･");
     }
 });
