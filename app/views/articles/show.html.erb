@@ -4,13 +4,13 @@
 			<div class="row justify-content-start">
 			<div class="col">
 			<h2>原稿詳細</h2>
-      <p class="lead text-muted">マッチングした時に使う原稿です。</p>
+      <p class="lead text-muted">マッチングした時に使う原稿です。編集ボタンから編集できます。</p>
 			</div>
 			</div>
 			<div class="row justify-content-start">
 			<div class="col">
 			<%= link_to "編集", edit_article_path(@article), class: "btn btn-success" %>
-			<%= link_to "削除", article_path(@article), method: :delete, class: "btn btn-danger" %>
+			<%= link_to "削除", article_path(@article), method: :delete, class: "btn btn-danger", data: { confirm: "【確認】削除してもよろしいですか？" } %>
 			</div>
 			</div>
 			<% else %>
@@ -23,6 +23,7 @@
 			<% end %>
 		</div>
   </section>
+  
 <div class="container mx-auto w-50">
 	<div class="row mx-5 mt-5">
 	<div class="col text-center">
@@ -42,10 +43,3 @@
 	</div>
 	</div>
 </div>
-
-<style>
-.container{
-	margin:0 20% 0 20%;
-	}
-</style>
-

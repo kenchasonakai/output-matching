@@ -14,12 +14,12 @@
 <div class="col">
 <%= form_with model: @article, local: true do |f| %>
 <div class="form-group">
-  <%= f.label :title, "テーマ" %>
-  <%= f.text_field :title, class: "form-control", placeholder: "title" %>
+  <%= f.label :title, "テーマ(必須)" %>
+  <%= f.text_field :title, class: "form-control", placeholder: "テーマ" %>
 </div>
 <div class="form-group">
-  <%= f.label :body, "本文" %>
-  <%= f.text_area :body, class: "form-control", placeholder: "Body", wrap: "soft", rows: "10" %>
+  <%= f.label :body, "本文(任意)" %>
+  <%= f.text_area :body, class: "form-control", placeholder: "本文", wrap: "soft", rows: "10" %>
 </div>
 <%= f.submit "投稿", class: "btn btn-primary" %>
 <% end %>

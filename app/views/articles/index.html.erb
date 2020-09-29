@@ -2,10 +2,38 @@
     <div class="container w-50">
 			<div class="row justify-content-start">
 			<div class="col">
-			<h2><%= @user.name %></h2>
-      <p class="lead text-muted">user_profile</p>
+			<h2>原稿一覧</h2>
+      <p class="lead text-muted">あなたが書いた原稿の一覧ページです。</p>
     </div>
 		</div>
 		</div>
   </section>
 
+<div class="container w-50">
+<div class="row">
+<div class="col">
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">執筆日</th>
+      <th scope="col">テーマ</th>
+      <th scope="col">本文</th>
+			<th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+	<%= render partial: 'article', collection: @articles %>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<script>
+$(".js-to_10strings").each(function(){
+    var txt = $(this).text();
+    if(txt.length > 10){
+        txt = txt.substr(0, 10);
+        $(this).text(txt + "･･･");
+    }
+});
+</script>

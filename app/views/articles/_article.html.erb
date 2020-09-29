@@ -1,0 +1,9 @@
+<tr>
+  <td><%= l article.created_at %></td>
+  <td><%= link_to article.title, article_path(article) %></td>
+  <td><div class="js-to_10strings"><%= article.body %></div></td>
+  <td>
+    <%= link_to "編集", edit_article_path(article), class: "btn btn-success", method: :get %>
+    <%= link_to "削除", article_path(article),class: "btn btn-danger", method: :delete, data: { confirm: "【確認】削除してもよろしいですか？" } %>
+  </td>
+</tr>

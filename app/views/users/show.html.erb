@@ -1,4 +1,4 @@
-  <section class="jumbotron">
+ <section class="jumbotron">
     <div class="container w-50">
 			<div class="row justify-content-start">
 			<div class="col">
@@ -14,32 +14,30 @@
 
         <div class="col-3">
           <div class="card mb-4 shadow-sm">
-							<div class="card-header">
-								マイ原稿
-							</div>
+							<div class="card-header text-center"><i class="fas fa-book-open mr-2"></i>マイ原稿一覧</div>
             <div class="card-body">
               <p class="card-text">執筆した原稿の一覧を確認できます。</p>
-							<p><%= link_to "クリック", "#", class: "btn btn-secondary stretched-link mt-3"%></p>
+							<p><%= link_to "", articles_path, class: "stretched-link"%></p>
             </div>
           </div>
         </div>
 
         <div class="col-3">
           <div class="card mb-4 shadow-sm">
-					<div class="card-header">マッチング詳細</div>
+					<div class="card-header text-center"><i class="far fa-calendar-check mr-2"></i>マッチング詳細</div>
             <div class="card-body">
               <p class="card-text">現在のマッチング詳細を確認できます</p>
-							<p><%= link_to "クリック", "#", class: "btn btn-secondary stretched-link mt-3"%></p>
+							<p><%= link_to "", "#", class: "stretched-link"%></p>
             </div>
           </div>
         </div>
 
         <div class="col-3">
           <div class="card mb-4 shadow-sm">
-					<div class="card-header">マッチング履歴</div>
+					<div class="card-header text-center"><i class="fas fa-history mr-2"></i>マッチング履歴</div>
             <div class="card-body">
-              <p class="card-text">現在準備中です</p>
-							<p><%= link_to "クリック", "#", class: "btn btn-secondary stretched-link mt-3"%></p>
+              <p class="card-text">現在準備中です。マッチング履歴が確認できます。</p>
+							<p><%= link_to "", "#", class: "stretched-link"%></p>
             </div>
           </div>
         </div>

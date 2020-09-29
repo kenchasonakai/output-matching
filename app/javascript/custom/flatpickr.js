@@ -8,6 +8,7 @@ document.addEventListener("turbolinks:load", () => {
 		altFormat: "n/j H:i 開始",
 		dateFormat: "Y-m-d H:i",
 		minDate: "today",
+		maxDate: new Date().fp_incr(8),
 		enableTime: true
   });
 });

@@ -1,0 +1,31 @@
+<section class="jumbotron">
+    <div class="container w-50">
+			<div class="row justify-content-start">
+			<div class="col">
+			<h2>マッチング募集編集ページ</h2>
+      <p class="lead text-muted">ここから編集できます。</p>
+    </div>
+		</div>
+		</div>
+  </section>
+<div class="container w-50">
+<div class="row">
+<div class="col">
+<%= form_with model: @matching_post, local: true do |f| %>
+<div class="form-group">
+  <%= f.label :title, "テーマ" %>
+  <%= f.text_field :title, class: "form-control", placeholder: "title" %>
+</div>
+<div class="form-group">
+<%= f.label :article_id, "参考資料" %>
+<%= f.select :article_id, @my_posts, { include_blank: '選択してください'}, { class: 'form-control mx-auto' } %>
+</div>
+<div class="form-group">
+  <%= f.label :body, "希望時間等" %>
+  <%= f.text_area :body, class: "form-control", placeholder: "Body", wrap: "soft", rows: "10" %>
+</div>
+<%= f.submit "更新", class: "btn btn-primary mb-5" %>
+<% end %>
+</div>
+</div>
+</div>

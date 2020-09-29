@@ -1,18 +1,16 @@
-<div class="container">
-<div class="row">
-<div class="col">
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Name</th>
-      <th scope="col">Email</th>
-    </tr>
-  </thead>
-  <tbody>
-	<%= render partial: 'user', collection: @users %>
-  </tbody>
-</table>
-</div>
-</div>
-</div>
+ <section class="jumbotron">
+    <div class="container w-50">
+			<div class="row justify-content-start">
+			<div class="col">
+			<h2>紹介ボード</h2>
+			<p>お友達のプロフィールページ</p>
+    </div>
+		</div>
+		</div>
+  </section>
+
+    <div class="container">
+      <div class="row justify-content-center row-eq-height">
+      <%= render partial: 'user', collection: @users %>
+			</div>
+		</div>

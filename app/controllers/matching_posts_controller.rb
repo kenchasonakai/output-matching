@@ -34,15 +34,28 @@ class MatchingPostsController < ApplicationController
 
   def show
     @matching_post = MatchingPost.find(params[:id])
+    @article = Article.find(@matching_post.article_id) if @matching_post.article_id
 		@time_frame = current_user.time_frames.new
 		@time_frames = @matching_post.time_frames.includes(:user)
   end
 
   def edit
     @matching_post = MatchingPost.find(params[:id])
+    posts = current_user.articles.all
+    @my_posts = {}
+    posts.each do |post|
+      @my_posts.merge!(post.title => post.id)
+    end
   end
 
-  def update; end
+  def update
+    @matching_post = MatchingPost.find(params[:id])
+    if @matching_post.update(matching_post_params)
+      redirect_to matching_post_path(@matching_post)
+    else
+      render 'edit'
+    end
+  end
 
   def destroy
     @matching_post = MatchingPost.find(params[:id])
