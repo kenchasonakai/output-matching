@@ -21,26 +21,25 @@
       <p class="lead text-muted">マッチング詳細を確認して都合が良い日程を送りましょう。承認されたらマッチングします。</p>
 			</div>
 			</div>
+
 			<div class="row justify-content-start">
+      <div class="col">
+			<h4><%= current_user.name%>さん</h4>
+			</div>
 			<div class="col">
-			
-			<table class="table">
-  		<thead>
- 		  <tr>
-      <th scope="col"><h4 class="mt-1"><%= current_user.name%>さん</h4></th>
-			<th scope="col"><button class="btn btn-secondary" id="js-show_time_frame">希望開始時間</button></th>
-			</tr>
-		  </thead>
-			
-		  <tbody id="js-user_time_frame" class="d-none">
-			<%= render 'user_time_frame', time_frames: @time_frames %>
-		  </tbody>
-			</table>
+			<button class="btn btn-secondary" id="js-show_time_frame">希望開始時間を表示</button>
 			</div>
 			</div>
+
 			<div class="row justify-content-start">
+		  <div id="js-user_time_frame" class="d-none col">
+			<%= render partial: 'time_frames/time_frame', collection: @time_frames %>
+		  </div>
+			</div>
+
+			<div class="row justify-content-start my-4">
 			<div class="col">
-			<button class="btn btn-success" id="js-new_time_frame">マッチング希望時間を送る</button>
+			<button class="btn btn-success" id="js-new_time_frame">マッチング希望時間を送る?</button>
 			</div>
 			</div>
 			<% end %>
@@ -103,4 +102,24 @@ body {
     margin: 0;
 }
 
+.add-time {
+    display: inline-block;
+    text-decoration: none;
+    padding: 0.5rem;
+    background: #f7f7f7;
+    border-left: solid 6px #58ad5a;
+    color: #58ad5a;
+    font-weight: bold;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.22);
+}
+.datetime_delete{
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: #0033cc;
+}
+.datetime_delete:hover{
+  text-decoration: underline;
+  color: #002080;
+}
 </style>

@@ -1,13 +1,3 @@
 $(function(){
-	if(document.defaultView.getComputedStyle(user_time_frame, null).display == "none"){
-		user_time_frame.classList.remove("d-none");
-		};
-	var time_frame = document.createTextNode("<%= @time_frame.time_frame.strftime("%m/%d %H時%M分")%>");
-	var tr = document.createElement("tr");
-	var td = document.createElement("td");
-	var tdchild = document.createElement("td");
-	td.appendChild(time_frame);
-	tdchild.appendChild("<div id="aaa"></div>");
-	tr.appendChild(td);
-	$("#js-user_time_frame").append(tr);
+	$("#js-user_time_frame").append("<%= j(render 'time_frames/time_frame', time_frame: @time_frame) %>");
 });

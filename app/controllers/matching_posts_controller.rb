@@ -36,7 +36,11 @@ class MatchingPostsController < ApplicationController
     @matching_post = MatchingPost.find(params[:id])
     @article = Article.find(@matching_post.article_id) if @matching_post.article_id
 		@time_frame = current_user.time_frames.new
-		@time_frames = @matching_post.time_frames.includes(:user)
+		if @matching_post.user_id == current_user.id
+			@time_frames = @matching_post.time_frames.includes(:user)
+		else
+			@time_frames = @matching_post.time_frames.includes(:user)
+		end
   end
 
   def edit

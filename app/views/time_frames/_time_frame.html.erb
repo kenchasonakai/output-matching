@@ -1,0 +1,6 @@
+<div class="d-none"><%= time_frame.user.name %></div>
+<div class="m-1 float-left add-time" id="time_frame-<%= time_frame.id %>">
+<%= link_to "x", time_frame_path(time_frame), method: :delete, remote: true %>
+<%= time_frame.time_frame.strftime("%m/%d %H時%M分") %>
+</div>
+<div class="d-none"><%= time_frame %></div>

@@ -14,6 +14,11 @@ class TimeFramesController < ApplicationController
 	def destroy
 		@time_frame = TimeFrame.find(params[:id])
 		@time_frame.destroy!
+		respond_to do |format|
+      	format.js
+				format.html { redirect_back(fallback_location:root_path) }
+    end
+
 	end
 
 	private
