@@ -1,20 +1,20 @@
 class MatchingsController < ApplicationController
+	def index
+		@matchings = Relationship.where(user_id: current_user.id).or(Relationship.where(followed_user_id: current_user.id))
+	end
+
   def new
-    @matching = Relationship.new
-    @article = Article.find(params[:article_id])
-    posts = current_user.articles
-    @my_posts = { "聞くだけ": '' }
-    posts.each do |post|
-      @my_posts.merge!(post.title => post.id)
-    end
   end
 
   def create
-    @matching = Relationship.new(matching_params)
+    @matching = current_user.relationships.new(matching_params)
+		@matching_post = MatchingPost.find(params[:matching][:matching_post_id])
     if @matching.save
       flash[:success] = 'マッチングしました'
-      redirect_to user_path(current_user)
+      redirect_to matchings_path
+			@matching_post.update(status: "finish")
     else
+			flash[:danger] = 'マッチングに失敗しました'
       redirect_back(fallback_location: root_path)
     end
   end
@@ -37,6 +37,6 @@ class MatchingsController < ApplicationController
   private
 
   def matching_params
-    params.require(:matching).permit(:followed_id, :follower_id, :followed_post_id, :follower_post_id)
+    params.require(:matching).permit(:followed_user_id, :followed_user_post_id, :user_post_id, :matching_post_id)
   end
 end

@@ -6,7 +6,7 @@
 			<% if current_user.id == @matching_post.user_id %>
 			<div class="row justify-content-start">
 			<div class="col">
-			<p class="lead text-muted">マッチング詳細です。編集ボタンから内容の編集ができます。</p>
+			<p class="lead text-muted">マッチング詳細です。編集ボタンから内容の編集ができます。希望時間帯からマッチングしたい時間を選んでマッチングしましょう。</p>
 			</div>
 			</div>
 			<div class="row justify-content-start">
@@ -15,6 +15,21 @@
 			<%= link_to "削除", matching_post_path(@matching_post), method: :delete, class: "btn btn-danger", data: { confirm: "【確認】削除してもよろしいですか？" } %>
 			</div>
 			</div>
+			<div class="row justify-content-start mt-4 mb-2">
+      <div class="col">
+			<h4>希望時間帯一覧</h4>
+			</div>
+			<div class="col">
+			<button class="btn btn-secondary" id="js-show_time_frame">希望開始時間を表示</button>
+			</div>
+			</div>
+
+			<div class="row justify-content-start">
+		  <div id="js-user_time_frame" class="col">
+			<%= render partial: 'time_frames/time_frame', collection: @time_frames %>
+		  </div>
+			</div>
+
 			<% else %>
 			<div class="row justify-content-start">
 			<div class="col">
@@ -22,7 +37,7 @@
 			</div>
 			</div>
 
-			<div class="row justify-content-start">
+			<div class="row justify-content-start mb-2">
       <div class="col">
 			<h4><%= current_user.name%>さん</h4>
 			</div>
@@ -32,7 +47,7 @@
 			</div>
 
 			<div class="row justify-content-start">
-		  <div id="js-user_time_frame" class="d-none col">
+		  <div id="js-user_time_frame" class="col">
 			<%= render partial: 'time_frames/time_frame', collection: @time_frames %>
 		  </div>
 			</div>
@@ -92,6 +107,51 @@
 	</div>
 </div>
 </div>
+<% if @matching_post.user_id == current_user.id %>
+<div class="modal" tabindex="-1" role="dialog" id="js-modal">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">マッチング確認</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p id="js-detail_name">名前: さん</p>
+				<p id="js-detail_time">時間: 開始</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<%= form_with url: matchings_path, method: :post, scope: :matching, local: true do |f|%>
+				<%= f.hidden_field :followed_user_id, value: "", id: "modal-followed_id" %>
+				<% if @article %>
+				<%= f.hidden_field :user_post_id, value: @article.id, id: "modal-user_post_id" %>
+				<% end %>
+				<%= f.hidden_field :matching_post_id, value: @matching_post.id %>
+				<%= f.hidden_field :followed_post_id, value: "", id: "modal-followed_post_id" %>
+				<%= f.submit "この時間で決定", class: "btn btn-primary"%>
+				<% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>
+<script>
+function show_detail(event){
+	var target = event.target
+	var name = document.getElementById("js-name_" + target.id).textContent
+	var time = document.getElementById("js-time_" + target.id).textContent
+	var user_name = "名前: " + name + " さん"
+	var user_time = "時間: " + time + " 開始"
+	var detail_name = document.getElementById("js-detail_name")
+	var detail_time = document.getElementById("js-detail_time")
+	detail_name.innerHTML = user_name
+	detail_time.innerHTML = user_time
+	var follower_id = Number(document.getElementById("js-followed_id_" + target.id).textContent)
+	document.getElementById("modal-followed_id").value = follower_id
+	}
+</script>
 <style>
 html {
     height: 130%;
@@ -112,14 +172,8 @@ body {
     font-weight: bold;
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.22);
 }
-.datetime_delete{
-  cursor: pointer;
-  border: none;
-  background: none;
-  color: #0033cc;
-}
-.datetime_delete:hover{
-  text-decoration: underline;
-  color: #002080;
+.add-time:hover {
+	cursor: pointer;
+	cursor: hand;
 }
 </style>
