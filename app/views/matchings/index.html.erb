@@ -1,0 +1,30 @@
+ <section class="jumbotron">
+    <div class="container w-50">
+			<div class="row justify-content-start">
+			<div class="col">
+			<h2>現在のマッチング</h2>
+      <p class="lead text-muted">マッチングの詳細を確認してください。詳細ページからチャットでやりとりができます。</p>
+    </div>
+		</div>
+		</div>
+  </section>
+
+<div class="container w-50">
+<div class="row">
+<div class="col">
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">アウトプットテーマ</th>
+      <th scope="col">マッチング相手</th>
+      <th scope="col">開始時間</th>
+			<th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+	<%= render partial: 'matching', collection: @matchings %>
+  </tbody>
+</table>
+</div>
+</div>
+</div>

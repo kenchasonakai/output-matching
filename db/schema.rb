@@ -34,16 +34,16 @@ ActiveRecord::Schema.define(version: 2020_09_23_225446) do
   end
 
   create_table "relationships", force: :cascade do |t|
-    t.integer "follower_id"
-    t.integer "followed_id"
-    t.integer "follower_post_id"
+    t.integer "matching_post_id"
+    t.integer "user_id"
+    t.integer "followed_user_id"
+    t.integer "user_post_id"
     t.integer "followed_post_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["followed_id"], name: "index_relationships_on_followed_id"
-    t.index ["followed_post_id"], name: "index_relationships_on_followed_post_id"
-    t.index ["follower_id"], name: "index_relationships_on_follower_id"
-    t.index ["follower_post_id"], name: "index_relationships_on_follower_post_id"
+    t.index ["followed_user_id"], name: "index_relationships_on_followed_user_id"
+    t.index ["user_id", "followed_user_id"], name: "index_relationships_on_user_id_and_followed_user_id", unique: true
+    t.index ["user_id"], name: "index_relationships_on_user_id"
   end
 
   create_table "time_frames", force: :cascade do |t|
@@ -67,4 +67,6 @@ ActiveRecord::Schema.define(version: 2020_09_23_225446) do
   end
 
   add_foreign_key "articles", "users"
+  add_foreign_key "relationships", "users"
+  add_foreign_key "relationships", "users", column: "followed_user_id"
 end

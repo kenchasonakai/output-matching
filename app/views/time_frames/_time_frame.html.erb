@@ -1,6 +1,7 @@
-<div class="d-none"><%= time_frame.user.name %></div>
-<div class="m-1 float-left add-time" id="time_frame-<%= time_frame.id %>">
+<div class="m-1 float-left add-time" id="time_frame-<%= time_frame.id %>" data-toggle="modal" data-target="#js-modal" onclick="show_detail(event)">
 <%= link_to "x", time_frame_path(time_frame), method: :delete, remote: true %>
 <%= time_frame.time_frame.strftime("%m/%d %H時%M分") %>
+<p class="d-none" id="js-name_time_frame-<%= time_frame.id %>"><%= time_frame.user.name %></p>
+<p class="d-none" id="js-time_time_frame-<%= time_frame.id %>"><%= time_frame.time_frame.strftime("%m/%d %H時%M分")%></p>
+<p class="d-none" id="js-followed_id_time_frame-<%= time_frame.id %>"><%= time_frame.user.id %></p>
 </div>
-<div class="d-none"><%= time_frame %></div>

@@ -1,0 +1,6 @@
+<tr>
+    <td><%= MatchingPost.find(matching.matching_post_id).title %></td>
+    <td><%= matching.followed_user.name %></td>
+    <td>10月3日19:00</td>
+	<td><%= link_to "詳細", matching_path(matching), class: "btn btn-success" %></td>
+</tr>
