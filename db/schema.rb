@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(version: 2020_09_23_225446) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["followed_user_id"], name: "index_relationships_on_followed_user_id"
-    t.index ["user_id", "followed_user_id"], name: "index_relationships_on_user_id_and_followed_user_id", unique: true
+    t.index %w[user_id followed_user_id], name: "index_relationships_on_user_id_and_followed_user_id", unique: true
     t.index ["user_id"], name: "index_relationships_on_user_id"
   end
 

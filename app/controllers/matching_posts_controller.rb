@@ -1,6 +1,6 @@
 class MatchingPostsController < ApplicationController
   def index
-    @matching_posts = MatchingPost.where(status: "active").all
+    @matching_posts = MatchingPost.where(status: 'active').all
     posts = current_user.articles.all
     @my_posts = {}
     posts.each do |post|
@@ -35,12 +35,12 @@ class MatchingPostsController < ApplicationController
   def show
     @matching_post = MatchingPost.find(params[:id])
     @article = Article.find(@matching_post.article_id) if @matching_post.article_id
-		@time_frame = current_user.time_frames.new
-		if @matching_post.user_id == current_user.id
-			@time_frames = @matching_post.time_frames.includes(:user).order(:time_frame)
-		else
-			@time_frames = @matching_post.time_frames.includes(:user).where(user_id: current_user.id).order(:time_frame)
-		end
+    @time_frame = current_user.time_frames.new
+    @time_frames = if @matching_post.user_id == current_user.id
+                     @matching_post.time_frames.includes(:user).order(:time_frame)
+                   else
+                     @matching_post.time_frames.includes(:user).where(user_id: current_user.id).order(:time_frame)
+                   end
   end
 
   def edit

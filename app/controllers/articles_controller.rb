@@ -11,7 +11,7 @@ class ArticlesController < ApplicationController
     @article = current_user.articles.build(article_params)
     if @article.save
       flash[:success] = '原稿を作成しました'
-      redirect_to articles_path 
+      redirect_to articles_path
     else
       render 'new'
     end
@@ -28,7 +28,7 @@ class ArticlesController < ApplicationController
   def update
     @article = current_user.articles.find(params[:id])
     @article.update(article_params)
-    redirect_to articles_path 
+    redirect_to articles_path
   end
 
   def destroy

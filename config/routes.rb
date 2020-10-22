@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :users
   resources :articles
   resources :matchings
-	resources :time_frames, only: [:create, :destroy]
+  resources :time_frames, only: [:create, :destroy]
   resources :matching_posts, except: [:new] do
     collection do
       post 'preview'

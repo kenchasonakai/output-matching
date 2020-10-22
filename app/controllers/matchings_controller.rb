@@ -1,20 +1,19 @@
 class MatchingsController < ApplicationController
-	def index
-		@matchings = Relationship.where(user_id: current_user.id).or(Relationship.where(followed_user_id: current_user.id))
-	end
-
-  def new
+  def index
+    @matchings = Relationship.where(user_id: current_user.id).or(Relationship.where(followed_user_id: current_user.id))
   end
+
+  def new; end
 
   def create
     @matching = current_user.relationships.new(matching_params)
-		@matching_post = MatchingPost.find(params[:matching][:matching_post_id])
+    @matching_post = MatchingPost.find(params[:matching][:matching_post_id])
     if @matching.save
       flash[:success] = 'マッチングしました'
       redirect_to matchings_path
-			@matching_post.update(status: "finish")
+      @matching_post.update(status: 'finish')
     else
-			flash[:danger] = 'マッチングに失敗しました'
+      flash[:danger] = 'マッチングに失敗しました'
       redirect_back(fallback_location: root_path)
     end
   end
